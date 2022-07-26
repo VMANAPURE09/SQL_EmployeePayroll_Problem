@@ -19,3 +19,11 @@ INSERT INTO employee_payroll values ('Vaibhav',30000,'2019-07-27'),('Sanjay',400
 
 --UC4-to select all / display the table
 select * from employee_payroll 
+
+--UC5-Retrieve salary data from particular employee
+SELECT salary FROM employee_payroll
+WHERE name = 'Vaibhav'
+
+--UC5-Retrieve Names from the selected date to present date
+select name FROM employee_payroll
+WHERE startdate BETWEEN CAST('2019-01-01' AS DATE) AND GETDATE()
