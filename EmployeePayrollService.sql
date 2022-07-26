@@ -44,3 +44,28 @@ where Name = 'Sai''Minu'
 
 --add field gender field after name field
 select id,name,gender,startdate,salary from employee_payroll
+
+
+--UC7--
+--Sum of salary of employee groupby Male & Female employee
+select SUM(salary) FROM employee_payroll where gender = 'M' GROUP BY gender
+select SUM(salary) FROM employee_payroll where gender = 'F' GROUP BY gender
+
+--Average salary of employee groupby Male & Female employee
+select AVG(salary) FROM employee_payroll where gender = 'M' GROUP BY gender
+select AVG(salary) FROM employee_payroll where gender = 'F' GROUP BY gender
+
+
+--Min salary of employee groupby Male & Female employee
+select MIN(salary) FROM employee_payroll where gender = 'M' GROUP BY gender
+select MIN(salary) FROM employee_payroll where gender = 'F' GROUP BY gender
+
+
+--Max salary of employee groupby Male & Female employee
+select MAX(salary) FROM employee_payroll where gender = 'M' GROUP BY gender
+select MAX(salary) FROM employee_payroll where gender = 'F' GROUP BY gender
+
+
+--Number of employee groupby Male &Female employee
+select COUNT(salary) FROM employee_payroll where gender = 'M' GROUP BY gender
+select COUNT(salary) FROM employee_payroll where gender = 'F' GROUP BY gender
