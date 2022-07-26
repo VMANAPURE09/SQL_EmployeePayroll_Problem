@@ -16,3 +16,6 @@ select * from employee_payroll
 
 --UC3-Inserting the data in to table
 INSERT INTO employee_payroll values ('Vaibhav',30000,'2019-07-27'),('Sanjay',40000,'2019-02-10'),('Subham',35000,'2019-11-04'),('Minu',15000,'2020-06-20'),('Sai',18000,'2019-08-01');
+
+--UC4-to select all / display the table
+select * from employee_payroll 
