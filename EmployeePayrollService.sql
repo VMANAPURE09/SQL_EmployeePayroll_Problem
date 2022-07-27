@@ -134,3 +134,6 @@ select * from employee_payroll
 insert into employee_payroll values ('Terissa', 35000, '2018-05-06', 'F',98263579510,'Mumbai','Sales',35000, 2500, 1500, 500, 31000),
 ('Terissa', 35000, '2018-05-06', 'F',98263579510,'Mumbai','Marketing',35000, 2500, 1500, 500, 31000)
 
+--UC11--
+--check for composite or multivaled data
+select * from employee_payroll where name = 'Terissa'
