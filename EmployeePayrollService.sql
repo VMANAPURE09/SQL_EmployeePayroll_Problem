@@ -137,3 +137,64 @@ insert into employee_payroll values ('Terissa', 35000, '2018-05-06', 'F',9826357
 --UC11--
 --check for composite or multivaled data
 select * from employee_payroll where name = 'Terissa'
+
+--UC12--
+--Droping the Department entity
+ALTER TABLE employee_payroll DROP column department
+
+--Creating departmentdetails table
+CREATE TABLE departmentdetails
+(departmentID int primary key,
+department varchar (20))
+
+--add the departmentid entity
+ALTER TABLE employee_payroll add departmentID int foreign key references departmentdetails
+
+select * from employee_payroll
+select * from departmentdetails
+
+--re-assigning the department and department id  in departmentdetails
+insert into departmentdetails values (1,'Sales'),(2,'Marketing'),(3,'HR')
+
+--updating the phone, address and department field 
+update employee_payroll
+set departmentID = 2  where name = 'Vaibhav'
+
+update employee_payroll
+set departmentID = 1 where name = 'Sanjay'
+
+update employee_payroll
+set departmentID =  1 where name = 'Subham'
+
+update employee_payroll
+set departmentID =  3 where name = 'Minu'
+
+update employee_payroll
+set departmentID = 3  where name = 'Sai'
+
+update employee_payroll
+set departmentID =  2  where name = 'Akash'
+
+--Insert employee details
+insert into employee_payroll values ('Terissa', 35000, '2018-05-06', 'F',98263579510,'Mumbai',35000, 2500, 1500, 500, 31000,2),
+('Terissa', 35000, '2018-05-06', 'F',98263579510,'Mumbai',35000, 2500, 1500, 500, 31000,1)
+
+--Sum of salary of employee groupby Male & Female employee
+select SUM(salary) FROM employee_payroll where gender = 'M' GROUP BY gender
+select SUM(salary) FROM employee_payroll where gender = 'F' GROUP BY gender
+
+--Average salary of employee groupby Male & Female employee
+select AVG(salary) FROM employee_payroll where gender = 'M' GROUP BY gender
+select AVG(salary) FROM employee_payroll where gender = 'F' GROUP BY gender
+
+--Min salary of employee groupby Male & Female employee
+select MIN(salary) FROM employee_payroll where gender = 'M' GROUP BY gender
+select MIN(salary) FROM employee_payroll where gender = 'F' GROUP BY gender
+
+--Max salary of employee groupby Male & Female employee
+select MAX(salary) FROM employee_payroll where gender = 'M' GROUP BY gender
+select MAX(salary) FROM employee_payroll where gender = 'F' GROUP BY gender
+
+--Number of employee groupby Male & Female employee
+select COUNT(salary) FROM employee_payroll where gender = 'M' GROUP BY gender
+select COUNT(salary) FROM employee_payroll where gender = 'F' GROUP BY gender
