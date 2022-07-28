@@ -198,3 +198,34 @@ select MAX(salary) FROM employee_payroll where gender = 'F' GROUP BY gender
 --Number of employee groupby Male & Female employee
 select COUNT(salary) FROM employee_payroll where gender = 'M' GROUP BY gender
 select COUNT(salary) FROM employee_payroll where gender = 'F' GROUP BY gender
+
+--Retrieve salary data from particular employee
+SELECT salary FROM employee_payroll
+WHERE name = 'Terissa'
+
+--to select all / display the table
+select * from employee_payroll
+
+--Retrieve Names from the selected date to present date
+select name FROM employee_payroll
+WHERE startdate BETWEEN CAST('2019-01-01' AS DATE) AND GETDATE()
+
+--Sum of salary of employee groupby Male employee
+select SUM(salary) FROM employee_payroll where gender = 'M' GROUP BY gender
+select SUM(salary) FROM employee_payroll where gender = 'F' GROUP BY gender
+
+--Average salary of employee groupby Male employee
+select AVG(salary) FROM employee_payroll where gender = 'M' GROUP BY gender
+select AVG(salary) FROM employee_payroll where gender = 'F' GROUP BY gender
+
+--Min salary of employee groupby Male employee
+select MIN(salary) FROM employee_payroll where gender = 'M' GROUP BY gender
+select MIN(salary) FROM employee_payroll where gender = 'F' GROUP BY gender
+
+--Max salary of employee groupby Male employee
+select MAX(salary) FROM employee_payroll where gender = 'M' GROUP BY gender
+select MAX(salary) FROM employee_payroll where gender = 'F' GROUP BY gender
+
+--Number of employee groupby Male employee
+select COUNT(salary) FROM employee_payroll where gender = 'M' GROUP BY gender
+select COUNT(salary) FROM employee_payroll where gender = 'F' GROUP BY gender
