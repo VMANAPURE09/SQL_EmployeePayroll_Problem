@@ -15,6 +15,8 @@ namespace EmployeePayrollProblem
             //Retrieve the employee payroll from  database
             RetrieveEmployeePayrollFromDataBase();
 
+            //Update the Base Pay for employee Terissa
+            UpdateBasePay();
         }
         //Method to Read all the data in the database
         public static void ReadDataFromDataBase()
@@ -79,7 +81,7 @@ namespace EmployeePayrollProblem
         public static void RetrieveEmployeePayrollFromDataBase()
         {
             string SQL = "exec GetEmployeeDetails";
-            string connectingstring = @"Data Source=DESKTOP-2UKFQA8;Initial Catalog=payroll_service;Integrated Security=True";
+            string connectingstring = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Employee_payroll_service;Integrated Security=True";
             SqlConnection connection = new SqlConnection(connectingstring);
             SqlCommand cmd = new SqlCommand(SQL, connection);
             connection.Open();
@@ -132,6 +134,19 @@ namespace EmployeePayrollProblem
             {
                 connection.Close();
             }
+        }
+        //UC3-Update the Base Pay for employee Terissa
+        public static void UpdateBasePay()
+        {
+            var SQL = @$"UPDATE employee_payroll SET BasicPay = 3000000, Deductions = 800000, TaxablePay= 200000, IncomeTax = 600000, NetPay = 2000000 WHERE name = 'Terissa'";
+            string connectingString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Employee_payroll_service;Integrated Security=True";
+            SqlConnection connection = new SqlConnection(connectingString);
+            SqlCommand cmd = new SqlCommand(SQL, connection);
+            connection.Open();
+            int reader = cmd.ExecuteNonQuery();
+            Console.WriteLine(reader);
+            Console.WriteLine("Updated the Basic Pay Successfully");
+            Console.ReadKey();
         }
     }
 }
