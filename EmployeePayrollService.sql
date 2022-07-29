@@ -140,7 +140,7 @@ select * from employee_payroll where name = 'Terissa'
 
 --UC12--
 --Droping the Department entity
-ALTER TABLE employee_payroll DROP column department
+ALTER TABLE employee_payroll DROP column department 
 
 --Creating departmentdetails table
 CREATE TABLE departmentdetails
@@ -229,3 +229,5 @@ select MAX(salary) FROM employee_payroll where gender = 'F' GROUP BY gender
 --Number of employee groupby Male employee
 select COUNT(salary) FROM employee_payroll where gender = 'M' GROUP BY gender
 select COUNT(salary) FROM employee_payroll where gender = 'F' GROUP BY gender
+
+delete from employee_payroll where id = 7 or id = 8
