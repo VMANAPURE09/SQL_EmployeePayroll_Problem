@@ -171,5 +171,27 @@ namespace EmployeePayrollProblem
             Console.WriteLine("Updated the Basic Pay Successfully");
             Console.ReadKey();
         }
+
+        //UC5:Retrieve employees joined in particular date range
+        public static void RetrieveEmployeeFromParticularDateRange()
+        {
+            var SQL = @$"select name FROM employee_payroll WHERE startdate BETWEEN CAST('2019-01-01' AS DATE) AND GETDATE()";
+            string connectingString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Employee_payroll_service;Integrated Security=True";
+            SqlConnection connection = new SqlConnection(connectingString);
+            SqlCommand cmd = new SqlCommand(SQL, connection);
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    Console.WriteLine("Employee Name {0}", reader["name"]);
+                }
+                reader.Close();
+            };
+            Console.WriteLine("\nRetrieve data Successfully");
+            Console.ReadKey();
+        }
     }
 }
