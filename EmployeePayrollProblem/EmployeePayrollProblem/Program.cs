@@ -62,6 +62,54 @@ namespace EmployeePayrollProblem
 
             //UC9:Method to Read all the data from departmentdetails
             GetDepartmentDetails();
+
+            /*********************************************/
+
+            // UC10 ensuring UC2-UC7 will work with new ER Diagram
+            //Retrieve the employee payroll from  database
+            RetrieveEmployeePayrollFromDataBase();   //UC2
+
+            //Update the Base Pay for employee Terissa
+            UpdateBasePay(); //UC3
+
+            //Update the Base Pay for employee Terissa using prepared statement
+            UpdateBasePayPreparedSTatement("Terissa"); //UC4
+
+            //Retrieve employees joined in particular date range
+            RetrieveEmployeeFromParticularDateRange(); //UC5
+
+            //Retrieve Sum of Male Employee Salary
+            SUMofMaleEmployeeSalary(); //UC6
+
+            //Retrieve Sum of Male Employee Salary
+            SUMofFemaleEmployeeSalary(); //UC6
+
+            //Retrieve Average Salary of Male Employee
+            AVGofMaleEmployeeSalary(); //UC6
+
+            //Retrieve Average Salary of Female Employee
+            AVGofFemaleEmployeeSalary(); //UC6
+
+            //Retrieve Minimum Salary of Male Employee 
+            MINofMaleEmployeeSalary(); //UC6
+
+            //Retrieve Minimum Salary of Female Employee 
+            MINofFemaleEmployeeSalary(); //UC6
+
+            //Retrieve Maximum Salary of Male Employee 
+            MAXofMaleEmployeeSalary(); //UC6
+
+            //Retrieve Maximum Salary of Female Employee 
+            MAXofFemaleEmployeeSalary(); //UC6
+
+            //Retrieve Number (Count) of Male Employee 
+            COUNTofMaleEmployee(); //UC6
+
+            //Retrieve Number (Count) of Female Employee 
+            COUNTofFemaleEmployee(); //UC6
+
+            //Add Employee to the Payroll
+            AddNewEmployeeToAddressBook("Mukund"); //UC7
         }
     
         //Method to Read all the data in the database
