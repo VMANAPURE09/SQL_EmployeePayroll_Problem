@@ -17,7 +17,47 @@ namespace EmployeePayrollProblem
 
             //Update the Base Pay for employee Terissa
             UpdateBasePay();
+
+            //Update the Base Pay for employee Terissa using prepared statement
+            UpdateBasePayPreparedSTatement("Terissa");
+
+            //Retrieve employees joined in particular date range
+            RetrieveEmployeeFromParticularDateRange();
+
+            //Retrieve Sum of Male Employee Salary
+            SUMofMaleEmployeeSalary();
+
+            //Retrieve Sum of Male Employee Salary
+            SUMofFemaleEmployeeSalary();
+
+            //Retrieve Average Salary of Male Employee
+            AVGofMaleEmployeeSalary();
+
+            //Retrieve Average Salary of Female Employee
+            AVGofFemaleEmployeeSalary();
+
+            //Retrieve Minimum Salary of Male Employee 
+            MINofMaleEmployeeSalary();
+
+            //Retrieve Minimum Salary of Female Employee 
+            MINofFemaleEmployeeSalary();
+
+            //Retrieve Maximum Salary of Male Employee 
+            MAXofMaleEmployeeSalary();
+
+            //Retrieve Maximum Salary of Female Employee 
+            MAXofFemaleEmployeeSalary();
+
+            //Retrieve Number (Count) of Male Employee 
+            COUNTofMaleEmployee();
+
+            //Retrieve Number (Count) of Female Employee 
+            COUNTofFemaleEmployee();
+
+            //UC7:Add New Employee to the Payroll
+            AddNewEmployeeToAddressBook("Sharan");
         }
+    
         //Method to Read all the data in the database
         public static void ReadDataFromDataBase()
         {
@@ -323,6 +363,27 @@ namespace EmployeePayrollProblem
 
             int reader = (int)cmd.ExecuteScalar();
             Console.WriteLine("Number (Count) of Female Employee : " + reader);
+            Console.ReadKey();
+        }
+
+        //UC7: Add New Employee to the Payroll
+        public static void AddNewEmployeeToAddressBook(string EmployeeName)
+        {
+            EmployeePayroll emp = new EmployeePayroll()
+            {
+                name = EmployeeName,
+                salary = 300000,
+                address = "Mumbai"
+
+            };
+            var SQL = @$"INSERT INTO employee_payroll (name, salary,startdate,address) Values ('{emp.name}','{emp.salary}','2017-04-12','{emp.address}')";
+            string connectingString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Employee_payroll_service;Integrated Security=True";
+            SqlConnection connection = new SqlConnection(connectingString);
+            SqlCommand cmd = new SqlCommand(SQL, connection);
+            connection.Open();
+            int reader = cmd.ExecuteNonQuery();
+            Console.WriteLine(reader);
+            Console.WriteLine("Employee added Successfully");
             Console.ReadKey();
         }
     }
