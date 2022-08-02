@@ -109,9 +109,14 @@ namespace EmployeePayrollProblem
             COUNTofFemaleEmployee(); //UC6
 
             //Add Employee to the Payroll
-            AddNewEmployeeToAddressBook("Mukund"); //UC7
+            AddNewEmployeeToAddressBook("Sharan"); //UC7
+            /*#################################################################*/
+
+            //UC11:Add Payroll details of newly added Employee to the Payroll
+            AddEmployeeToAddressBook();
+
         }
-    
+
         //Method to Read all the data in the database
         public static void ReadDataFromDataBase()
         {
@@ -496,6 +501,20 @@ namespace EmployeePayrollProblem
             {
                 connection.Close();
             }
+        }
+
+        //UC11: add Payroll details of newly added Employee to the Payroll
+        public static void AddEmployeeToAddressBook()
+        {
+            var SQL = @$"insert into employee_payroll values ('Alexa', 100000, '2016-08-28', 'F',7534286951,'Chennai',85000, 10000, 5000, 2500, 90000,1)";
+            string connectingString = @"Data Source=DESKTOP-2UKFQA8;Initial Catalog=payroll_service;Integrated Security=True";
+            SqlConnection connection = new SqlConnection(connectingString);
+            SqlCommand cmd = new SqlCommand(SQL, connection);
+            connection.Open();
+            int reader = cmd.ExecuteNonQuery();
+            Console.WriteLine(reader);
+            Console.WriteLine("Employee added Successfully");
+            Console.ReadKey();
         }
     }
 }
