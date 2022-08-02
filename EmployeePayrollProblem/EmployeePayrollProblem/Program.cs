@@ -412,7 +412,7 @@ namespace EmployeePayrollProblem
             Console.ReadKey();
         }
 
-        //Method to Read all the data from departmentdetails
+        //UC9:Method to Read all the data from departmentdetails
         public static void GetDepartmentDetails()
         {
             string SQL = "select * from departmentdetails";
