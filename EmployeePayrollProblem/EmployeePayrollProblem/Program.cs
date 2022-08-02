@@ -56,6 +56,9 @@ namespace EmployeePayrollProblem
 
             //UC7:Add New Employee to the Payroll
             AddNewEmployeeToAddressBook("Sharan");
+
+            //UC8:Add Payroll details of newly added Employee to the Payroll
+            AddNewPayrollDetailsofNewlyAddedEmployeeToAddressBook("Sharan");
         }
     
         //Method to Read all the data in the database
@@ -384,6 +387,25 @@ namespace EmployeePayrollProblem
             int reader = cmd.ExecuteNonQuery();
             Console.WriteLine(reader);
             Console.WriteLine("Employee added Successfully");
+            Console.ReadKey();
+        }
+
+        //UC8:Add Payroll details of newly added Employee to the Payroll
+        public static void AddNewPayrollDetailsofNewlyAddedEmployeeToAddressBook(string EmployeeName)
+        {
+            EmployeePayroll emp = new EmployeePayroll()
+            {
+                name = EmployeeName,
+
+            };
+            var SQL = @$"update employee_payroll set  gender = 'M', phone = 9642531895, departmentID = 2, BasicPay = 45000, Deductions = 9000, TaxablePay = 1000, IncomeTax = 1000, NetPay= 34000 where name = '{emp.name}'";
+            string connectingString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Employee_payroll_service;Integrated Security=True";
+            SqlConnection connection = new SqlConnection(connectingString);
+            SqlCommand cmd = new SqlCommand(SQL, connection);
+            connection.Open();
+            int reader = cmd.ExecuteNonQuery();
+            Console.WriteLine(reader);
+            Console.WriteLine("Updated the payroll details Successfully");
             Console.ReadKey();
         }
     }
