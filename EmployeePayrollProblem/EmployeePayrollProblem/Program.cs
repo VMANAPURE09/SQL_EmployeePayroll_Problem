@@ -59,6 +59,9 @@ namespace EmployeePayrollProblem
 
             //UC8:Add Payroll details of newly added Employee to the Payroll
             AddNewPayrollDetailsofNewlyAddedEmployeeToAddressBook("Sharan");
+
+            //UC9:Method to Read all the data from departmentdetails
+            GetDepartmentDetails();
         }
     
         //Method to Read all the data in the database
@@ -407,6 +410,44 @@ namespace EmployeePayrollProblem
             Console.WriteLine(reader);
             Console.WriteLine("Updated the payroll details Successfully");
             Console.ReadKey();
+        }
+
+        //Method to Read all the data from departmentdetails
+        public static void GetDepartmentDetails()
+        {
+            string SQL = "select * from departmentdetails";
+            string connectingstring = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Employee_payroll_service;Integrated Security=True";
+            SqlConnection connection = new SqlConnection(connectingstring);
+            SqlCommand cmd = new SqlCommand(SQL, connection);
+            connection.Open();
+            try
+            {
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                List<EmployeeDepartment> departmentdetails = new List<EmployeeDepartment>();
+                while (reader.Read())
+                {
+                    var deptDetails = new EmployeeDepartment();
+                    deptDetails.DepartmentID = reader.GetInt32(0);
+                    deptDetails.Department = reader.GetString(1);
+
+                    departmentdetails.Add(deptDetails);
+                }
+                reader.Close();
+                foreach (var dept in departmentdetails)
+                {
+                    Console.WriteLine("\nDepartment ID :" + dept.DepartmentID +
+                        "\nDepartment Name :" + dept.Department);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception :" + e.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
     }
 }
