@@ -148,5 +148,28 @@ namespace EmployeePayrollProblem
             Console.WriteLine("Updated the Basic Pay Successfully");
             Console.ReadKey();
         }
+
+        //UC4:Update the Base Pay for employee Terissa using prepared statement
+        public static void UpdateBasePayPreparedSTatement(string EmployeeName)
+        {
+            EmployeePayroll emp = new EmployeePayroll()
+            {
+                name = EmployeeName,
+                BasicPay = 3000000,
+                Deductions = 1000000,
+                TaxablePay = 400000,
+                IncomeTax = 600000,
+                NetPay = 200000
+            };
+            var SQL = @$"UPDATE employee_payroll SET BasicPay = '{emp.BasicPay}', Deductions = '{emp.Deductions}', TaxablePay= '{emp.TaxablePay}', IncomeTax = '{emp.IncomeTax}', NetPay = '{emp.NetPay}' WHERE name = '{emp.name}'";
+            string connectingString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Employee_payroll_service;Integrated Security=True";
+            SqlConnection connection = new SqlConnection(connectingString);
+            SqlCommand cmd = new SqlCommand(SQL, connection);
+            connection.Open();
+            int reader = cmd.ExecuteNonQuery();
+            Console.WriteLine(reader);
+            Console.WriteLine("Updated the Basic Pay Successfully");
+            Console.ReadKey();
+        }
     }
 }
